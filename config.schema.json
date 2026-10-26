@@ -1,0 +1,41 @@
+{
+  "pluginAlias": "MeRGBW",
+  "pluginType": "platform",
+  "singular": true,
+  "headerDisplay": "Requires the **mergbw bridge** service running on the same network (see the README). The bridge handles the Bluetooth connection; this plugin talks to it over HTTP.",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "default": "LED Strip",
+        "required": true
+      },
+      "url": {
+        "title": "Bridge URL",
+        "type": "string",
+        "default": "http://127.0.0.1:8790",
+        "description": "Address of the mergbw bridge. Use http://127.0.0.1:8790 when it runs on the same machine as Homebridge."
+      },
+      "mac": {
+        "title": "Serial number",
+        "type": "string",
+        "description": "Optional. Shown as the serial number in the Home app (e.g. the strip's MAC address)."
+      },
+      "model": {
+        "title": "Model",
+        "type": "string",
+        "default": "MeRGBW Light",
+        "description": "Optional. Shown as the model in the Home app."
+      },
+      "pollInterval": {
+        "title": "Poll interval (seconds)",
+        "type": "integer",
+        "default": 5,
+        "minimum": 2,
+        "description": "How often to refresh the state from the bridge. Reads are local and cheap; this does not wake the Bluetooth connection."
+      }
+    }
+  }
+}

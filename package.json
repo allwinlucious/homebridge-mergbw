@@ -1,0 +1,44 @@
+{
+  "name": "homebridge-mergbw",
+  "displayName": "Homebridge MeRGBW",
+  "version": "1.0.0",
+  "description": "Control MeRGBW Bluetooth LED strips from Apple Home (on/off, brightness, colour) via a small local bridge.",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "config.schema.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "keywords": [
+    "homebridge-plugin",
+    "homebridge",
+    "homekit",
+    "mergbw",
+    "bluetooth",
+    "ble",
+    "led",
+    "led-strip",
+    "rgb"
+  ],
+  "author": "allwinlucious",
+  "license": "MIT",
+  "homepage": "https://github.com/allwinlucious/homebridge-mergbw#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allwinlucious/homebridge-mergbw.git"
+  },
+  "bugs": {
+    "url": "https://github.com/allwinlucious/homebridge-mergbw/issues"
+  },
+  "engines": {
+    "homebridge": "^1.6.0 || ^2.0.0-beta.0",
+    "node": "^18.20.4 || ^20.15.1 || ^22 || ^24"
+  },
+  "devDependencies": {
+    "hap-nodejs": "^0.14.3"
+  }
+}

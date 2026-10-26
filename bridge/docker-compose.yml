@@ -1,0 +1,15 @@
+services:
+  mergbw:
+    build: .
+    image: homebridge-mergbw-bridge:local
+    restart: unless-stopped
+    # host networking so Homebridge on the same machine can reach 127.0.0.1:8790
+    network_mode: host
+    security_opt:
+      # docker's default AppArmor profile blocks D-Bus calls to BlueZ
+      - apparmor:unconfined
+    env_file: .env
+    volumes:
+      # BlueZ on the host is reached over the system D-Bus
+      - /run/dbus:/run/dbus:ro
+      - ./data:/data

@@ -1,0 +1,19 @@
+# systemd unit for running the bridge without Docker.
+# Install: see "Running without Docker" in the README.
+[Unit]
+Description=MeRGBW Bluetooth bridge for Homebridge
+After=bluetooth.target network-online.target
+Wants=bluetooth.target
+
+[Service]
+Type=simple
+EnvironmentFile=/opt/mergbw-bridge/.env
+Environment=MERGBW_STATE_FILE=/var/lib/mergbw-bridge/state.json
+StateDirectory=mergbw-bridge
+WorkingDirectory=/opt/mergbw-bridge
+ExecStart=/opt/mergbw-bridge/.venv/bin/python -u server.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

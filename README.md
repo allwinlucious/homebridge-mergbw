@@ -44,7 +44,7 @@ This project has two parts:
 | Part | What it is | Where |
 |---|---|---|
 | **Homebridge plugin** | Exposes the light to HomeKit. Talks to the bridge over HTTP. | `homebridge-mergbw` on npm (this repo's root) |
-| **Bridge** | Small Python service that owns the Bluetooth connection. | [`bridge/`](bridge/) |
+| **Bridge** | Small Python service that owns the Bluetooth connection. | [`bridge/`](bridge/), Docker image on `ghcr.io` |
 
 Bluetooth is handled by a separate service because Homebridge is often run in Docker or
 on a different machine than the one near the light. Splitting them also lets the bridge:
@@ -112,7 +112,7 @@ MERGBW_TYPE=1
 Start the bridge and check that it can talk to the light:
 
 ```bash
-docker compose up -d --build
+docker compose up -d
 curl -s -X POST 127.0.0.1:8790/state -H 'content-type: application/json' -d '{"on":true,"hue":240,"saturation":100}'
 ```
 
@@ -120,6 +120,10 @@ The light should turn blue.
 
 > **Note:** the container needs `/run/dbus` mounted and `apparmor:unconfined` to reach BlueZ.
 > Both are already set in [`docker-compose.yml`](bridge/docker-compose.yml).
+
+The prebuilt image [`ghcr.io/allwinlucious/homebridge-mergbw-bridge`](https://github.com/allwinlucious/homebridge-mergbw/pkgs/container/homebridge-mergbw-bridge)
+is available for `amd64` (x86), `arm64` (64-bit Raspberry Pi OS) and `arm/v7` (32-bit).
+To build it yourself instead, run `docker compose up -d --build`.
 
 ### 2. Install the Homebridge plugin
 
